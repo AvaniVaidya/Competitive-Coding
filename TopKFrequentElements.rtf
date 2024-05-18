@@ -1,0 +1,60 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.\
+\'a0\
+Example 1:\
+\'a0\
+Input: nums = [1,1,1,2,2,3], k = 2\
+Output: [1,2]\
+Example 2:\
+\'a0\
+Input: nums = [1], k = 1\
+Output: [1]\
+\'a0\
+\'a0\
+Constraints:\
+\'a0\
+1 <= nums.length <= 105\
+-104 <= nums[i] <= 104\
+k is in the range [1, the number of unique elements in the array].\
+It is guaranteed that the answer is unique.\
+\
+===========================================================\
+\
+class Solution \{\
+\'a0\'a0\'a0 public int[] topKFrequent(int[] nums, int k) \{\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 Map<Integer, Integer> map = new HashMap<>();\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 for(int i = 0; i < nums.length; i++)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(!map.containsKey(nums[i]))\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 map.put(nums[i], 1);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \} else \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 map.put(nums[i], map.get(nums[i])+1);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 list.sort(Map.Entry.comparingByValue());\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int[] retArr = new int[k];\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int j=0;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int lastInd = list.size()-1;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 while(k > 0)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 retArr[j] = list.get(lastInd - j).getKey();\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 j++;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 k--;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return retArr;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \
+\'a0\'a0\'a0 \}\
+\}\
+\
+}

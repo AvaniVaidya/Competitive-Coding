@@ -1,0 +1,78 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.\
+\'a0\
+Given a string s, return true if it is a palindrome, or false otherwise.\
+\'a0\
+\'a0\
+Example 1:\
+\'a0\
+Input: s = "A man, a plan, a canal: Panama"\
+Output: true\
+Explanation: "amanaplanacanalpanama" is a palindrome.\
+Example 2:\
+\'a0\
+Input: s = "race a car"\
+Output: false\
+Explanation: "raceacar" is not a palindrome.\
+Example 3:\
+\'a0\
+Input: s = " "\
+Output: true\
+Explanation: s is an empty string "" after removing non-alphanumeric characters.\
+Since an empty string reads the same forward and backward, it is a palindrome.\
+\'a0\
+\'a0\
+Constraints:\
+\'a0\
+1 <= s.length <= 2 * 105\
+s consists only of printable ASCII characters.\
+\
+=============================================================\
+\
+class Solution \{\
+\'a0\'a0\'a0 public boolean isPalindrome(String s) \{\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // if(s.isEmpty())\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 //\'a0\'a0\'a0\'a0 return true;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // char[] nonalpString = s.replaceAll("[^A-Za-z0-9]", "").toLowerCase().toCharArray();//"[^A-Za-z0-9]", ""\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // int i = 0;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // int j = nonalpString.length - 1;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // while(i<=j)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 //\'a0\'a0\'a0\'a0 if(nonalpString[i] != nonalpString[j])\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 //\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return false;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 //\'a0\'a0\'a0\'a0 i++;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 //\'a0\'a0\'a0\'a0 j--;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // \} \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // return true;\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(s.isEmpty())\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return true;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int start = 0;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int end = s.length()-1;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 while(start<=end)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 char charSt = s.charAt(start);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 char charEn = s.charAt(end);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(!Character.isLetterOrDigit(charSt))\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 start++;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 else if(!Character.isLetterOrDigit(charEn))\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 end--;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 else \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(Character.toLowerCase(charSt) != Character.toLowerCase(charEn))\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return false;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 start++;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 end--;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return true;\
+\'a0\'a0\'a0 \}\
+\}\
+\
+}

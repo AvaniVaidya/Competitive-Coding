@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).\
+\'a0\
+Find two lines that together with the x-axis form a container, such that the container contains the most water.\
+\'a0\
+Return the maximum amount of water a container can store.\
+\'a0\
+Notice that you may not slant the container.\
+\'a0\
+\'a0\
+\'a0\
+Example 1:\
+\'a0\
+\'a0\
+Input: height = [1,8,6,2,5,4,8,3,7]\
+Output: 49\
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.\
+Example 2:\
+\'a0\
+Input: height = [1,1]\
+Output: 1\
+\'a0\
+\'a0\
+Constraints:\
+\'a0\
+n == height.length\
+2 <= n <= 105\
+0 <= height[i] <= 104\
+\
+\
+===========================================================\
+\
+\
+class Solution \{\
+\'a0\'a0\'a0 public int maxArea(int[] height) \{\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // int maxArea = 0;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // for(int i = 0; i < height.length; i++)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 //\'a0\'a0\'a0\'a0 for(int j=i+1; j< height.length; j++)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 //\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 maxArea = Math.max(maxArea, Math.min(height[i], height[j]) * (j-i));\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 //\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 // return maxArea;\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int maxArea = 0;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int i = 0;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int j = height.length - 1;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 while(i<j)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 maxArea = Math.max(maxArea, Math.min(height[i], height[j]) * (j-i));\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(height[i] < height[j])\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 i++;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 else\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 j--;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return maxArea;\
+\'a0\'a0\'a0 \}\
+\}\
+\
+}
