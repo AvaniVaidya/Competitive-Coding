@@ -1,0 +1,100 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.\
+\'a0\
+Implement the MinStack class:\
+\'a0\
+MinStack() initializes the stack object.\
+void push(int val) pushes the element val onto the stack.\
+void pop() removes the element on the top of the stack.\
+int top() gets the top element of the stack.\
+int getMin() retrieves the minimum element in the stack.\
+You must implement a solution with O(1) time complexity for each function.\
+\'a0\
+\'a0\
+\'a0\
+Example 1:\
+\'a0\
+Input\
+["MinStack","push","push","push","getMin","pop","top","getMin"]\
+[[],[-2],[0],[-3],[],[],[],[]]\
+\'a0\
+Output\
+[null,null,null,null,-3,null,0,-2]\
+\'a0\
+Explanation\
+MinStack minStack = new MinStack();\
+minStack.push(-2);\
+minStack.push(0);\
+minStack.push(-3);\
+minStack.getMin(); // return -3\
+minStack.pop();\
+minStack.top();\'a0\'a0\'a0 // return 0\
+minStack.getMin(); // return -2\
+\'a0\
+\'a0\
+Constraints:\
+\'a0\
+-231 <= val <= 231 - 1\
+Methods pop, top and getMin operations will always be called on non-empty stacks.\
+At most 3 * 104 calls will be made to push, pop, top, and getMin.\
+\
+===========================================================\
+\
+class Node \{\
+\'a0\'a0\'a0 int val;\
+\'a0\'a0\'a0 int min;\
+\'a0\
+\'a0\'a0\'a0 public Node(int val, int min)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 this.val = val;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 this.min = min;\
+\'a0\'a0\'a0 \}\
+\}\
+\'a0\
+class MinStack \{\
+\'a0\
+\'a0\'a0\'a0 LinkedList<Node> stack;\
+\'a0\
+\'a0\'a0\'a0 public MinStack() \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 stack = new LinkedList<Node>();\
+\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0 \
+\'a0\'a0\'a0 public void push(int val) \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(stack.size() == 0)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 stack.addFirst(new Node(val, val));\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \} else \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int currMin = stack.getFirst().min;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 currMin = val < currMin ? val : currMin;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 stack.addFirst(new Node(val, currMin));\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0 \
+\'a0\'a0\'a0 public void pop() \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 stack.pollFirst();\
+\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0 \
+\'a0\'a0\'a0 public int top() \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return stack.peekFirst().val;\
+\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0 \
+\'a0\'a0\'a0 public int getMin() \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return stack.getFirst().min;\
+\'a0\'a0\'a0 \}\
+\}\
+\'a0\
+/**\
+\'a0* Your MinStack object will be instantiated and called as such:\
+\'a0* MinStack obj = new MinStack();\
+\'a0* obj.push(val);\
+\'a0* obj.pop();\
+\'a0* int param_3 = obj.top();\
+\'a0* int param_4 = obj.getMin();\
+\'a0*/\
+}
