@@ -1,0 +1,74 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.\
+\'a0\
+Notice that the solution set must not contain duplicate triplets.\
+\'a0\
+\'a0\
+\'a0\
+Example 1:\
+\'a0\
+Input: nums = [-1,0,1,2,-1,-4]\
+Output: [[-1,-1,2],[-1,0,1]]\
+Explanation: \
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.\
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.\
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.\
+The distinct triplets are [-1,0,1] and [-1,-1,2].\
+Notice that the order of the output and the order of the triplets does not matter.\
+Example 2:\
+\'a0\
+Input: nums = [0,1,1]\
+Output: []\
+Explanation: The only possible triplet does not sum up to 0.\
+Example 3:\
+\'a0\
+Input: nums = [0,0,0]\
+Output: [[0,0,0]]\
+Explanation: The only possible triplet sums up to 0.\
+\'a0\
+\'a0\
+Constraints:\
+\'a0\
+3 <= nums.length <= 3000\
+-105 <= nums[i] <= 105\
+\
+============================================================\
+\
+class Solution \{\
+\'a0\
+\'a0\'a0\'a0 public List<List<Integer>> threeSum(int[] nums) \{\
+\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int j, k, sum;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 Arrays.sort(nums);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 List<List<Integer>> result = new ArrayList<>();\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 for(int i = 0; i < nums.length; i++)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(i > 0 && nums[i] == nums[i-1])\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 continue;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 j = i+1;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 k = nums.length-1;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 while(j < k)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 sum = nums[i] + nums[j] + nums[k];\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(sum == 0)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 result.add(Arrays.asList(nums[i], nums[j], nums[k]));\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 j++;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 while(j < k && nums[j] == nums[j-1])\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 j++;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 else if(sum < 0)\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 j++;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 else\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 k--;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return result;\
+\'a0\'a0\'a0 \}\
+\}\
+}

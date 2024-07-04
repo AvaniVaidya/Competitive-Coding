@@ -1,0 +1,109 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17340\viewh15280\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+271. Encode and Decode Strings\
+Solved\
+Medium\
+\'a0\
+Topics\
+\'a0\
+Companies\
+Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.\
+\'a0\
+Machine 1 (sender) has the function:\
+\'a0\
+string encode(vector<string> strs) \{\
+\'a0 // ... your code\
+\'a0 return encoded_string;\
+\}\
+Machine 2 (receiver) has the function:\
+vector<string> decode(string s) \{\
+\'a0 //... your code\
+\'a0 return strs;\
+\}\
+So Machine 1 does:\
+\'a0\
+string encoded_string = encode(strs);\
+and Machine 2 does:\
+\'a0\
+vector<string> strs2 = decode(encoded_string);\
+strs2 in Machine 2 should be the same as strs in Machine 1.\
+\'a0\
+Implement the encode and decode methods.\
+\'a0\
+You are not allowed to solve the problem using any serialize methods (such as eval).\
+\'a0\
+\'a0\
+\'a0\
+Example 1:\
+\'a0\
+Input: dummy_input = ["Hello","World"]\
+Output: ["Hello","World"]\
+Explanation:\
+Machine 1:\
+Codec encoder = new Codec();\
+String msg = encoder.encode(strs);\
+Machine 1 ---msg---> Machine 2\
+\'a0\
+Machine 2:\
+Codec decoder = new Codec();\
+String[] strs = decoder.decode(msg);\
+Example 2:\
+\'a0\
+Input: dummy_input = [""]\
+Output: [""]\
+\'a0\
+\'a0\
+Constraints:\
+\'a0\
+1 <= strs.length <= 200\
+0 <= strs[i].length <= 200\
+strs[i] contains any possible characters out of 256 valid ASCII characters.\
+\
+\
+============================================================\
+\
+public class Codec \{\
+\'a0\
+\'a0\'a0\'a0 // Encodes a list of strings to a single string.\
+\'a0\'a0\'a0 public String encode(List<String> strs) \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 StringBuilder sb = new StringBuilder(); // String is immutable - cannot be changed\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 for(String str : strs)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 sb.append(str.length());\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 sb.append(" ");\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 sb.append(str);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return sb.toString();\
+\'a0\'a0\'a0 \}\
+\'a0\
+\'a0\'a0\'a0 // Decodes a single string to a list of strings.\
+\'a0\'a0\'a0 public List<String> decode(String s) \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 List<String> sL = new ArrayList();\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 StringBuilder dig = new StringBuilder();\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 char curr;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 int len;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 for(int i = 0; i < s.length(); i++)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 curr = s.charAt(i);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 if(Character.isDigit(curr))\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 dig.append(curr);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \} else if(curr == ' ' && dig.length() > 0)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 len = Integer.parseInt(dig.toString());   // String.valueOf() - converts into string. To compare strings use equals \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 sL.add(s.substring(i+1, i+1+len));        // and not ==\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 dig = new StringBuilder();\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 i = i+len;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return sL;\
+\'a0\'a0\'a0 \}\
+\}\
+\'a0\
+// Your Codec object will be instantiated and called as such:\
+// Codec codec = new Codec();\
+// codec.decode(codec.encode(strs));\
+}
